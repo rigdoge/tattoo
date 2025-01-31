@@ -83,14 +83,38 @@ const GlobeComponent = () => {
   };
 
   const focusCity = (artist) => {
-    console.log('Focusing city for artist:', artist);  // 添加日志
+    console.log('Focusing city for artist:', artist);
     const cityData = artistsByCity[artist.city];
     if (!cityData) {
       console.error('No city data found for:', artist.city);
       return;
     }
 
-    console.log('City data found:', cityData);  // 添加日志
+    // 如果点击的是已选中的艺术家，只更新视角
+    if (selectedArtist?.id === artist.id) {
+      // 更新视角
+      if (globeEl.current) {
+        const currentView = globeEl.current.pointOfView();
+        // 先拉远
+        globeEl.current.pointOfView({
+          lat: currentView.lat,
+          lng: currentView.lng,
+          altitude: currentView.altitude + 0.5
+        }, 300);
+        
+        // 延迟后聚焦到目标
+        setTimeout(() => {
+          globeEl.current.pointOfView({
+            lat: Number(cityData.lat),
+            lng: Number(cityData.lng),
+            altitude: 1.5
+          }, 700);
+        }, 300);
+      }
+      return;
+    }
+
+    console.log('City data found:', cityData);
 
     // 更新选中状态
     setSelectedArtist(artist);
@@ -207,14 +231,14 @@ const GlobeComponent = () => {
           // 添加点击事件
           el.onclick = (event) => {
             event.stopPropagation();
-            console.log('Clicked artist:', d);  // 添加日志
+            console.log('Clicked artist:', d);  
             focusCity(d);
           };
           
           return el;
         }}
         htmlAltitude={0.1}
-        onGlobeClick={resetView}
+        onGlobeClick={() => {}}
       />
       {selectedCity && (
         <div className="artist-card">
