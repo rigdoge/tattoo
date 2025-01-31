@@ -220,18 +220,22 @@ const GlobeComponent = () => {
                   event.stopPropagation();
                   
                   if (selectedData?.id === d.id) {
+                    // 先设置位置为 null，这样卡片就不会显示了
+                    setCardPosition(null);
+                    // 然后重置选中的数据
                     setSelectedData(null);
-                    setCardPosition({ x: 0, y: 0 });
                     group.scale.set(8, 8, 1);
                     ringMaterial.opacity = 0.7;
                     glowMaterial.uniforms.color.value.copy(new THREE.Color(d.color));
                     globeEl.current.pointOfView(YIWU_COORDS, 1000);
                   } else {
-                    setSelectedData(d);
-                    setCardPosition({
+                    // 先设置新的位置，再设置选中的数据
+                    const newPosition = {
                       x: event.clientX,
                       y: event.clientY
-                    });
+                    };
+                    setCardPosition(newPosition);
+                    setSelectedData(d);
                     group.scale.set(24, 24, 1);
                     ringMaterial.opacity = 0.9;
                     glowMaterial.uniforms.color.value.multiplyScalar(1.5);

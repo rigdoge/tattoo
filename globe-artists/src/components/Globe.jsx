@@ -267,13 +267,16 @@ const GlobeComponent = () => {
             </div>
             <div className="social-links">
               {selectedArtist && (
-                <>
-                  <a href={selectedArtist.website} target="_blank" rel="noopener noreferrer">Website</a>
-                  <a href={`https://instagram.com/${selectedArtist.instagram}`} target="_blank" rel="noopener noreferrer">Instagram</a>
-                </>
+                <a 
+                  href={`https://instagram.com/${selectedArtist.instagram}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="instagram-link"
+                >
+                  Instagram
+                </a>
               )}
             </div>
-            <button onClick={resetView} className="reset-view-btn">Reset View</button>
           </div>
         </div>
       )}
