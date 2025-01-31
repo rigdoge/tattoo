@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo Test</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            padding: 8px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-item {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Logo Test Page</h1>
+    <div class="container">
+        <div class="logo-item">
+            <img src="/logos/tokyo.png" class="logo" alt="Tokyo">
+            <div>Tokyo</div>
+        </div>
+        <div class="logo-item">
+            <img src="/logos/newyork.png" class="logo" alt="New York">
+            <div>New York</div>
+        </div>
+        <div class="logo-item">
+            <img src="/logos/london.png" class="logo" alt="London">
+            <div>London</div>
+        </div>
+        <div class="logo-item">
+            <img src="/logos/sydney.png" class="logo" alt="Sydney">
+            <div>Sydney</div>
+        </div>
+        <div class="logo-item">
+            <img src="/logos/dubai.png" class="logo" alt="Dubai">
+            <div>Dubai</div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = (e) => {
+                console.error('Failed to load:', e.target.src);
+                e.target.src = 'https://via.placeholder.com/80x80?text=Error';
+            };
+            img.onload = (e) => {
+                console.log('Successfully loaded:', e.target.src);
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+.info-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(10px);
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+  min-width: 280px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+              0 0 20px rgba(0, 0, 0, 0.1);
+  pointer-events: all;
+}
+
+.info-card.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+.info-card .logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  background: white;
+  padding: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.3em;
+  color: #fff;
+  text-align: center;
+}
+
+.info-card .location {
+  color: #ccc;
+  margin-bottom: 12px;
+  font-size: 1em;
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-card .contact {
+  margin: 12px 0;
+  font-size: 0.95em;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.info-card .social {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.info-card .social a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9em;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.info-card .social a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
