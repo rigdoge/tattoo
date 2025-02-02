@@ -1,0 +1,36 @@
+.admin-page {
+  min-height: 100vh;
+  background: #1a1a1a;
+  color: white;
+  padding: 20px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-link {
+  color: #4B9EFF;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid #4B9EFF;
+  border-radius: 4px;
+  margin-right: 20px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  background: #4B9EFF;
+  color: white;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}

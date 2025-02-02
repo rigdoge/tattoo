@@ -1,0 +1,123 @@
+.artist-manager {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.toggle-button {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+}
+
+.toggle-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.manager-panel {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 300px;
+  max-height: calc(100vh - 100px);
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  color: white;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.artists-list {
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 20px;
+}
+
+.artist-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.artist-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.artist-info {
+  flex: 1;
+}
+
+.artist-info h4 {
+  margin: 0;
+  font-size: 14px;
+  color: white;
+}
+
+.artist-info p {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+button:last-child {
+  margin-right: 0;
+}
