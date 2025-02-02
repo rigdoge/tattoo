@@ -51,7 +51,7 @@ export const artists = [
     awards: []
   },
   {
-    id: 2,
+    id: 4,
     name: "Eigleer Nunes",
     city: "Miami",
     country: "USA",
@@ -68,7 +68,7 @@ export const artists = [
     awards: []
   },
   {
-    id: 3,
+    id: 5,
     name: "Jose Pulido",
     city: "Chicago",
     country: "USA",
@@ -85,7 +85,7 @@ export const artists = [
     awards: []
   },
   {
-    id: 4,
+    id: 6,
     name: "Damian Gorski",
     city: "London",
     country: "UK",
@@ -102,7 +102,7 @@ export const artists = [
     awards: []
   },
   {
-    id: 5,
+    id: 7,
     name: "Oleh Trynda",
     city: "Kyiv",
     country: "Ukraine",
@@ -119,7 +119,7 @@ export const artists = [
     awards: []
   },
   {
-    id: 6,
+    id: 8,
     name: "Anna Black",
     city: "Lviv",
     country: "Ukraine",
@@ -136,7 +136,7 @@ export const artists = [
     awards: []
   },
   {
-    id: 7,
+    id: 9,
     name: "Anna Mellow",
     city: "Odesa",
     country: "Ukraine",
@@ -153,7 +153,7 @@ export const artists = [
     awards: []
   },
   {
-    id: 8,
+    id: 10,
     name: "Aleksey Morozov",
     city: "Kharkiv",
     country: "Ukraine",
