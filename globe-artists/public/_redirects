@@ -1,1 +1,7 @@
+# Handle static assets
+/earth-blue-marble.jpg /earth-blue-marble.jpg 200
+/earth-topology.png /earth-topology.png 200
+/assets/* /assets/:splat 200
+
+# Handle SPA routes
 /* /index.html 200
