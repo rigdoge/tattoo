@@ -2,7 +2,7 @@
   width: 100%;
   height: 100vh;
   position: relative;
-  background-color: #000;
+  background-color: transparent;
   overflow: hidden;
 }
 
@@ -11,6 +11,7 @@
   top: 0;
   left: 0;
   outline: none;
+  background: transparent;
 }
 
 .artist-marker {
@@ -29,7 +30,7 @@
 }
 
 .artist-marker:not(.city-focus):not(.hovering) {
-  opacity: 0.3;
+  opacity: 0.8;
 }
 
 .artist-marker * {

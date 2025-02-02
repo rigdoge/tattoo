@@ -172,12 +172,14 @@ const GlobeComponent = () => {
 
   return (
     <div className="globe-container">
-      <StarField />
+      <div className="background-layer">
+        <StarField />
+      </div>
       <Globe
         ref={globeEl}
         globeImageUrl="/earth-blue-marble.jpg"
         bumpImageUrl="/earth-topology.png"
-        backgroundColor="#000000"
+        backgroundColor="rgba(0, 0, 0, 0.1)"
         atmosphereColor="#4774B3"
         atmosphereAltitude={0.25}
         htmlElementsData={artists}
