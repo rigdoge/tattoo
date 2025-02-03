@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import Globe from 'react-globe.gl';
 import { artists } from '../data/artists';
-import StarField from './StarField';
+import SpaceBackground from './SpaceBackground';
 import './Globe.css';
 
 const getDeviceType = () => {
@@ -232,14 +232,12 @@ const GlobeComponent = () => {
         className={`globe-overlay ${selectedArtist || selectedCity ? 'has-selection' : ''}`}
         onClick={handleOverlayClick}
       />
-      <div className="background-layer">
-        <StarField />
-      </div>
+      <SpaceBackground globeRef={globeEl} />
       <Globe
         ref={globeEl}
         globeImageUrl="/earth-blue-marble.jpg"
         bumpImageUrl="/earth-topology.png"
-        backgroundColor="rgba(0, 0, 0, 0.1)"
+        backgroundColor="rgba(0, 0, 0, 0)"
         onGlobeClick={handleGlobeClick}
         onGlobeRightClick={handleGlobeClick}
         onBackgroundClick={handleGlobeClick}
