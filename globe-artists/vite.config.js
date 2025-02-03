@@ -8,22 +8,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-        assetFileNames: 'assets/[name]-[hash][extname]',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js'
-      }
-    }
-  },
-  optimizeDeps: {
-    exclude: ['typescript']
-  },
-  resolve: {
-    alias: {
-      typescript: 'typescript/lib/typescript.js'
-    }
+    sourcemap: true
   }
 })
