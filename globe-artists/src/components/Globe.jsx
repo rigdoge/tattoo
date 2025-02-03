@@ -4,12 +4,22 @@ import { artists } from '../data/artists';
 import StarField from './StarField';
 import './Globe.css';
 
-const isMobile = window.innerWidth <= 768;
+const getDeviceType = () => {
+  const width = window.innerWidth;
+  if (width < 768) return 'mobile';
+  if (width < 1024) return 'tablet';
+  return 'desktop';
+};
+
+const deviceType = getDeviceType();
+const isMobile = deviceType === 'mobile';
 
 const DEFAULT_VIEW = { 
   lat: 29.3088, 
   lng: 120.0778, 
-  altitude: isMobile ? 3 : 2.5 
+  altitude: deviceType === 'mobile' ? 3 : 
+           deviceType === 'tablet' ? 2.8 : 
+           2.5
 };
 
 const MARKER_SIZE = isMobile ? 24 : 32;

@@ -62,11 +62,34 @@
 
 :root {
   --marker-size: 32px;
+  --card-padding: 20px;
+  --card-width: 300px;
+  --artist-image-size: 48px;
+  --artist-name-size: 16px;
+  --artist-style-size: 14px;
 }
 
-@media (max-width: 768px) {
+/* 平板样式 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    --marker-size: 28px;
+    --card-padding: 16px;
+    --card-width: 280px;
+    --artist-image-size: 42px;
+    --artist-name-size: 15px;
+    --artist-style-size: 13px;
+  }
+}
+
+/* 手机样式 */
+@media (max-width: 767px) {
   :root {
     --marker-size: 24px;
+    --card-padding: 12px;
+    --card-width: 260px;
+    --artist-image-size: 36px;
+    --artist-name-size: 14px;
+    --artist-style-size: 12px;
   }
 }
 
@@ -258,9 +281,10 @@
 .city-artist {
   display: flex;
   align-items: center;
-  padding: 12px;
-  margin: 8px -12px 4px -12px;
+  padding: var(--card-padding);
+  margin: 8px calc(-1 * var(--card-padding)) 4px;
   border-radius: 12px;
+  max-width: var(--card-width);
   cursor: pointer;
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.03);
@@ -280,10 +304,10 @@
 }
 
 .city-artist img {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  margin-right: 16px;
+  width: var(--artist-image-size);
+  height: var(--artist-image-size);
+  border-radius: 8px;
+  margin-right: calc(var(--card-padding) - 4px);
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -295,13 +319,15 @@
 .city-artist .name {
   font-weight: 600;
   margin-bottom: 4px;
-  font-size: clamp(14px, 4vw, 16px);
+  font-size: var(--artist-name-size);
   color: #fff;
+  line-height: 1.2;
 }
 
 .city-artist .style {
-  font-size: 14px;
+  font-size: var(--artist-style-size);
   color: #a8b3cf;
+  line-height: 1.4;
 }
 
 
