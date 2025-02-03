@@ -3,8 +3,6 @@ import Globe from 'react-globe.gl';
 import { artists } from '../data/artists';
 import StarField from './StarField';
 import './Globe.css';
-import earthTexture from '../assets/earth-blue-marble.jpg';
-import earthTopology from '../assets/earth-topology.png';
 
 const DEFAULT_VIEW = { lat: 29.3088, lng: 120.0778, altitude: 2.5 };
 
@@ -179,8 +177,8 @@ const GlobeComponent = () => {
       </div>
       <Globe
         ref={globeEl}
-        globeImageUrl={earthTexture}
-        bumpImageUrl={earthTopology}
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundColor="rgba(0, 0, 0, 0.1)"
         atmosphereColor="#4774B3"
         atmosphereAltitude={0.25}
