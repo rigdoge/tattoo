@@ -10,13 +10,20 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true,
     rollupOptions: {
-      external: ['typescript'],
       output: {
         manualChunks: undefined,
         assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js'
       }
+    }
+  },
+  optimizeDeps: {
+    exclude: ['typescript']
+  },
+  resolve: {
+    alias: {
+      typescript: 'typescript/lib/typescript.js'
     }
   }
 })
