@@ -1,10 +1,18 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import Globe from 'react-globe.gl';
 import { artists } from '../data/artists';
 import StarField from './StarField';
 import './Globe.css';
 
-const DEFAULT_VIEW = { lat: 29.3088, lng: 120.0778, altitude: 2.5 };
+const isMobile = window.innerWidth <= 768;
+
+const DEFAULT_VIEW = { 
+  lat: 29.3088, 
+  lng: 120.0778, 
+  altitude: isMobile ? 3 : 2.5 
+};
+
+const MARKER_SIZE = isMobile ? 24 : 32;
 
 const GlobeComponent = () => {
   const globeEl = useRef();
@@ -42,8 +50,13 @@ const GlobeComponent = () => {
   // 控制自动旋转
   useEffect(() => {
     if (globeEl.current) {
-      globeEl.current.controls().autoRotate = !isHovering;
-      globeEl.current.controls().autoRotateSpeed = 0.5;
+      const controls = globeEl.current.controls();
+      controls.autoRotate = !isHovering;
+      controls.autoRotateSpeed = 0.5;
+      controls.enableZoom = !isMobile; // 移动端禁用缩放
+      controls.enablePan = !isMobile;  // 移动端禁用平移
+      controls.minDistance = 200;      // 限制最小距离
+      controls.maxDistance = 800;      // 限制最大距离
     }
   }, [isHovering]);
 
@@ -54,6 +67,23 @@ const GlobeComponent = () => {
         clearTimeout(hoverTimeoutRef.current);
       }
     };
+  }, []);
+
+  // 处理地球点击事件
+  const handleGlobeClick = useCallback(() => {
+    console.log('Globe clicked');
+    setSelectedArtist(null);
+    setSelectedCity(null);
+    
+    // 移除所有标记的高亮
+    markersRef.current.forEach((marker) => {
+      marker.classList.remove('city-focus');
+    });
+
+    // 重置视角
+    if (globeEl.current) {
+      globeEl.current.pointOfView(DEFAULT_VIEW, 1000);
+    }
   }, []);
 
   const handleMouseEnter = (el, d) => {
@@ -169,8 +199,29 @@ const GlobeComponent = () => {
     // Update UI when selection changes
   }, [selectedArtist, selectedCity]);
 
+  // 处理全局点击
+  const handleOverlayClick = useCallback((e) => {
+    // 如果点击的是标记或卡片，不处理
+    if (e.target.closest('.artist-marker') || e.target.closest('.city-artist')) {
+      return;
+    }
+
+    setSelectedArtist(null);
+    setSelectedCity(null);
+    
+    // 移除所有标记的高亮
+    markersRef.current.forEach((marker) => {
+      marker.classList.remove('city-focus');
+    });
+  }, []);
+
   return (
     <div className="globe-container">
+      {/* 添加一个全局点击区域 */}
+      <div 
+        className={`globe-overlay ${selectedArtist || selectedCity ? 'has-selection' : ''}`}
+        onClick={handleOverlayClick}
+      />
       <div className="background-layer">
         <StarField />
       </div>
@@ -179,6 +230,9 @@ const GlobeComponent = () => {
         globeImageUrl="/earth-blue-marble.jpg"
         bumpImageUrl="/earth-topology.png"
         backgroundColor="rgba(0, 0, 0, 0.1)"
+        onGlobeClick={handleGlobeClick}
+        onGlobeRightClick={handleGlobeClick}
+        onBackgroundClick={handleGlobeClick}
         atmosphereColor="#4774B3"
         atmosphereAltitude={0.25}
         htmlElementsData={artists}

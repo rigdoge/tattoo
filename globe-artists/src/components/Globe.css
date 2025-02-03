@@ -9,6 +9,25 @@
   z-index: 1;
 }
 
+.globe-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  cursor: default;
+  pointer-events: none;
+}
+
+.globe-overlay.has-selection {
+  pointer-events: auto;
+}
+
+.globe-overlay.has-selection {
+  cursor: pointer;
+}
+
 .globe-container canvas {
   position: absolute;
   top: 0;
@@ -25,6 +44,7 @@
   opacity: 1;
   transition: opacity 0.3s ease;
   will-change: opacity;
+  z-index: 3;
 }
 
 .artist-marker.city-focus {
@@ -40,9 +60,19 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+:root {
+  --marker-size: 32px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --marker-size: 24px;
+  }
+}
+
 .artist-image {
-  width: 32px;
-  height: 32px;
+  width: var(--marker-size);
+  height: var(--marker-size);
   border-radius: 4px;
   overflow: hidden;
   opacity: 0;
@@ -235,6 +265,7 @@
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0);
+  z-index: 3;
 }
 
 .city-artist:hover {
@@ -264,7 +295,7 @@
 .city-artist .name {
   font-weight: 600;
   margin-bottom: 4px;
-  font-size: 16px;
+  font-size: clamp(14px, 4vw, 16px);
   color: #fff;
 }
 
