@@ -10,6 +10,7 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true,
     rollupOptions: {
+      external: ['typescript'],
       output: {
         manualChunks: undefined
       }
