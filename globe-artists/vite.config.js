@@ -10,7 +10,14 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true,
     rollupOptions: {
-      external: ['typescript']
+      external: [
+        'typescript',
+        '@loaders.gl/core',
+        '@loaders.gl/las',
+        '@loaders.gl/ply',
+        '@loaders.gl/draco',
+        '@loaders.gl/gltf'
+      ]
     }
   }
 })
