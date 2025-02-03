@@ -97,7 +97,7 @@ const GlobeComponent = () => {
   };
 
   const focusCity = (artist) => {
-    console.log('Focusing city for artist:', artist);
+    // Focus city for selected artist
     const cityData = artistsByCity[artist.city];
     if (!cityData) {
       console.error('No city data found for:', artist.city);
@@ -128,7 +128,7 @@ const GlobeComponent = () => {
       return;
     }
 
-    console.log('City data found:', cityData);
+    // Process city data
 
     // 更新选中状态
     setSelectedArtist(artist);
@@ -166,8 +166,7 @@ const GlobeComponent = () => {
   };
 
   useEffect(() => {
-    console.log('State changed - selectedArtist:', selectedArtist);
-    console.log('State changed - selectedCity:', selectedCity);
+    // Update UI when selection changes
   }, [selectedArtist, selectedCity]);
 
   return (
@@ -237,7 +236,7 @@ const GlobeComponent = () => {
           // 添加点击事件
           el.onclick = (event) => {
             event.stopPropagation();
-            console.log('Clicked artist:', d);  
+            // Handle artist click
             focusCity(d);
           };
           
