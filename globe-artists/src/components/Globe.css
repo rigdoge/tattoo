@@ -1,9 +1,12 @@
 .globe-container {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: transparent;
   overflow: hidden;
+  z-index: 1;
 }
 
 .globe-container canvas {
