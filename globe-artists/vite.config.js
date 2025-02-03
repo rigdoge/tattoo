@@ -1,10 +1,65 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    VitePWA({
+      registerType: 'prompt',
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      manifest: {
+        id: '/',
+        name: 'Globe Artists',
+        short_name: 'Globe Artists',
+        description: 'A globe visualization of tattoo artists around the world',
+        theme_color: '#000000',
+        background_color: '#000000',
+        display: 'standalone',
+        start_url: '/',
+        scope: '/',
+        orientation: 'any',
+        icons: [
+          {
+            src: '/icons/icon-192x192.svg',
+            sizes: '192x192',
+            type: 'image/svg+xml',
+            purpose: 'any'
+          },
+          {
+            src: '/icons/icon-512x512.svg',
+            sizes: '512x512',
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
+          }
+        ],
+        screenshots: [
+          {
+            src: '/screenshots/desktop.svg',
+            sizes: '1920x1080',
+            type: 'image/svg+xml',
+            form_factor: 'wide',
+            label: 'Globe Artists Desktop View'
+          },
+          {
+            src: '/screenshots/mobile.svg',
+            sizes: '750x1334',
+            type: 'image/svg+xml',
+            label: 'Globe Artists Mobile View'
+          }
+        ]
+      },
+      devOptions: {
+        enabled: true,
+        type: 'module',
+        navigateFallback: 'index.html'
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        cleanupOutdatedCaches: true
+      }
+    }),
     {
       name: 'handle-three-webgpu',
       enforce: 'pre',
