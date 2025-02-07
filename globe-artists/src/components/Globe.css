@@ -34,17 +34,18 @@
   left: 0;
   outline: none;
   background: transparent;
+  pointer-events: auto;
 }
 
 .artist-marker {
   position: absolute;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  pointer-events: auto;
+  pointer-events: all !important;
   opacity: 1;
   transition: opacity 0.3s ease;
   will-change: opacity;
-  z-index: 3;
+  z-index: 1000;
 }
 
 .artist-marker.city-focus {
@@ -114,8 +115,6 @@
   transform: scale(4);
   z-index: 999;
 }
-
-
 
 .artist-card {
   position: fixed;

@@ -238,15 +238,24 @@ const GlobeComponent = () => {
         globeImageUrl="/earth-blue-marble.jpg"
         bumpImageUrl="/earth-topology.png"
         backgroundColor="rgba(0, 0, 0, 0)"
-        onGlobeClick={handleGlobeClick}
+        onGlobeClick={(e) => {
+          // 检查点击的元素是否是艺术家标记或其子元素
+          const target = e.target;
+          if (target.closest('.artist-marker')) {
+            return; // 如果是艺术家标记，不处理地球的点击事件
+          }
+          handleGlobeClick();
+        }}
         onGlobeRightClick={handleGlobeClick}
         onBackgroundClick={handleGlobeClick}
         atmosphereColor="#4774B3"
         atmosphereAltitude={0.25}
+        bumpScale={10}
         htmlElementsData={artists}
         htmlElement={d => {
           const el = document.createElement('div');
           el.className = 'artist-marker';
+          el.style.pointerEvents = 'auto'; // 确保元素可以接收点击事件
           if (selectedCity && d.city === selectedCity.city) {
             el.classList.add('city-focus');
           }
