@@ -1,5 +1,5 @@
 {
-  "name": "globe-distributors",
+  "name": "globe-artists",
   "private": true,
   "version": "0.3.4",
   "type": "module",
@@ -32,7 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "vite": "^5.0.12",
-    "vite-plugin-pwa": "^0.21.1",
+    "vite-plugin-pwa": "^0.17.4",
     "workbox-window": "^7.3.0"
   }
 }

@@ -305,7 +305,6 @@ const GlobeComponent = () => {
           return el;
         }}
         htmlAltitude={0.1}
-        onGlobeClick={() => {}}
       />
       {selectedCity && (
         <div className="artist-card">
