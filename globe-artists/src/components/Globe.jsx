@@ -317,7 +317,7 @@ const GlobeComponent = () => {
           </div>
           <div className="card-content">
             <div className="artist-header">
-              <h3>{selectedCity.city}, {selectedCity.country}</h3>
+              <h3>{selectedArtist?.name || selectedCity.artists[0].name}</h3>
               {selectedArtist && (
                 <div className="social-links">
                   {selectedArtist.instagram && (
@@ -350,19 +350,13 @@ const GlobeComponent = () => {
               )}
             </div>
             <div className="city-artists">
-              {selectedCity.artists.map(artist => (
-                <div 
-                  key={artist.id} 
-                  className={`city-artist ${selectedArtist?.id === artist.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedArtist(artist)}
-                >
-                  <img src={artist.avatar} alt={artist.name} />
-                  <div className="artist-info">
-                    <div className="name">{artist.name}</div>
-                    <div className="style">{artist.style}</div>
-                  </div>
+              <div className="city-artist selected">
+                <img src={selectedArtist?.avatar || selectedCity.artists[0].avatar} alt={selectedArtist?.name || selectedCity.artists[0].name} />
+                <div className="artist-info">
+                  <div className="name">{selectedArtist?.city || selectedCity.city}, {selectedArtist?.country || selectedCity.country}</div>
+                  <div className="style">{selectedArtist?.style || selectedCity.artists[0].style}</div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
