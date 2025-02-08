@@ -1,0 +1,201 @@
+.main {
+  width: 100%;
+  background: #fff;
+}
+
+.hero {
+  padding: 6rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  color: white;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 0%, #a8b3cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.sections {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin-bottom: 8rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.section.reverse {
+  flex-direction: row-reverse;
+}
+
+.imageContainer {
+  flex: 1;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.imageContainer:hover {
+  transform: translateY(-10px);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.imageContainer:hover .image {
+  transform: scale(1.05);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.2rem;
+  }
+
+  .section {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .section.reverse {
+    flex-direction: column;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+}
+
+.brandSection {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../../assets/workshop-bg.svg');
+  background-size: cover;
+  background-position: center;
+  padding: 8rem 2rem;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.brandLogo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  color: #4ECCA3;
+}
+
+.brandTitle {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5rem;
+}
+
+.brandSupply {
+  font-size: 3rem;
+  color: #4ECCA3;
+  border: 2px solid #4ECCA3;
+  padding: 0.5rem 2rem;
+  display: inline-block;
+  margin: 2rem 0;
+  letter-spacing: 0.3rem;
+}
+
+.contactInfo {
+  margin-top: 4rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.2rem;
+}
+
+.contactInfo p {
+  margin: 1rem 0;
+  opacity: 0.8;
+}
+
+.contactInfo a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactInfo a:hover {
+  color: #4ECCA3;
+}
+
+@media screen and (max-width: 996px) {
+  .brandTitle {
+    font-size: 2.5rem;
+  }
+
+  .brandSupply {
+    font-size: 2rem;
+  }
+
+  .contactInfo {
+    font-size: 1rem;
+  }
+} 
