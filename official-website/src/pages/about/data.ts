@@ -8,11 +8,6 @@ export interface Section {
 
 export const sections: Section[] = [
   {
-    image: '/img/about/brand-intro.jpg',
-    title: 'EZ TATTOO SUPPLY',
-    description: '作为全球领先的纹身用品供应商，EZ TATTOO SUPPLY 致力于为纹身艺术家提供最优质的产品和服务。我们的使命是通过创新的产品和全球化的服务网络，助力纹身艺术家实现他们的艺术愿景。'
-  },
-  {
     image: require('@site/src/assets/tattoo-icons.svg').default,
     title: 'ABOUT US',
     subtitle: 'AT EZ TATTOO, WE ARE MORE THAN JUST A TATTOO SUPPLY COMPANY',

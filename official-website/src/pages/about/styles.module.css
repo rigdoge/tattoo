@@ -40,6 +40,53 @@
   animation: fadeInUp 0.6s ease forwards;
   padding: 0;
   margin: 0;
+  position: relative;
+}
+
+.section:not(.dark) {
+  padding: 4rem 2rem;
+}
+
+.section:not(.dark) .imageContainer {
+  flex: 1;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.section:not(.dark) .image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.section:not(.dark) .content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.section:not(.dark) .title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.section:not(.dark) .description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.section:not(.dark) .imageContainer:hover {
+  transform: translateY(-10px);
+}
+
+.section:not(.dark) .imageContainer:hover .image {
+  transform: scale(1.05);
 }
 
 .section.reverse {
@@ -50,20 +97,7 @@
   background: #1a1a1a;
   margin: 0;
   padding: 0;
-}
-
-.section.dark .title {
-  color: white;
-  text-transform: uppercase;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: 0.1em;
-  max-width: 600px;
-}
-
-.section.dark .description {
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 500px;
+  overflow: hidden;
 }
 
 .section.dark .imageContainer {
@@ -92,6 +126,15 @@
   transform: translateY(-50%);
   z-index: 1;
   padding: 0;
+  max-width: 600px;
+}
+
+.section.dark .title {
+  color: white;
+  text-transform: uppercase;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
 }
 
 .section.dark .subtitle {
@@ -99,50 +142,11 @@
   font-size: 2rem;
   line-height: 1.4;
   margin: 1.5rem 0;
-  max-width: 600px;
   opacity: 0.9;
 }
 
-.imageContainer {
-  flex: 1;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.imageContainer:hover {
-  transform: translateY(-10px);
-}
-
-.image {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.imageContainer:hover .image {
-  transform: scale(1.05);
-}
-
-.content {
-  flex: 1;
-  padding: 2rem;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #1a1a1a;
-}
-
-.description {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #666;
+.section.dark .description {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @keyframes fadeInUp {
@@ -165,30 +169,20 @@
     font-size: 1.2rem;
   }
 
-  .section {
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 4rem;
+  .section:not(.dark) {
+    padding: 2rem 1rem;
+  }
+
+  .section:not(.dark) .title {
+    font-size: 2rem;
+  }
+
+  .section:not(.dark) .description {
+    font-size: 1.1rem;
   }
 
   .section.reverse {
     flex-direction: column;
-  }
-
-  .content {
-    padding: 1rem;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .description {
-    font-size: 1.1rem;
-  }
-
-  .section.dark .subtitle {
-    font-size: 1.5rem;
   }
 
   .section.dark .imageContainer {
@@ -199,10 +193,27 @@
   .section.dark .image {
     height: 50vh;
   }
+
+  .section.dark .content {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    padding: 2rem;
+    margin: 0 auto;
+  }
+
+  .section.dark .title {
+    font-size: 2.5rem;
+  }
+
+  .section.dark .subtitle {
+    font-size: 1.5rem;
+  }
 }
 
 .brandSection {
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  background: #1a1a1a;
   background-size: cover;
   background-position: center;
   padding: 8rem 2rem;
@@ -219,9 +230,52 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('../../assets/workshop-bg.svg') center/cover no-repeat;
-  opacity: 0.3;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(78, 204, 163, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 0% 0%, rgba(78, 204, 163, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba(78, 204, 163, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(78, 204, 163, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(78, 204, 163, 0.05) 0%, transparent 50%),
+    url('../../assets/workshop-bg.svg') center/cover no-repeat;
+  opacity: 1;
   z-index: 0;
+  animation: backgroundPulse 10s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+}
+
+.brandSection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(26, 26, 26, 0.5) 0%,
+    rgba(26, 26, 26, 0.7) 50%,
+    rgba(26, 26, 26, 0.9) 100%
+  );
+  z-index: 0;
+  animation: darkPulse 8s ease-in-out infinite;
+}
+
+@keyframes darkPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .brandLogo {
@@ -263,56 +317,78 @@
 .brandTitle {
   font-size: 4rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  letter-spacing: 0.5rem;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  user-select: text;
 }
 
 .brandSupply {
-  font-size: 3rem;
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0.5rem 0 2rem;
+  position: relative;
+  z-index: 1;
   color: #4ECCA3;
-  border: 2px solid #4ECCA3;
-  padding: 0.5rem 2rem;
+  letter-spacing: 0.2em;
+  user-select: text;
   display: inline-block;
-  margin: 2rem 0;
-  letter-spacing: 0.3rem;
+  padding: 0.5rem 2rem;
+  border: 2px solid transparent;
+  background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+              linear-gradient(90deg, 
+                #4ECCA3, 
+                #66e0bb,
+                #4ECCA3) border-box;
+  animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+  from {
+    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                linear-gradient(0deg, 
+                  #4ECCA3, 
+                  #66e0bb,
+                  #4ECCA3) border-box;
+  }
+  to {
+    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                linear-gradient(360deg,
+                  #4ECCA3,
+                  #66e0bb,
+                  #4ECCA3) border-box;
+  }
 }
 
 .contactInfo {
-  margin-top: 4rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.2rem;
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  opacity: 0.8;
+  user-select: text;
 }
 
 .contactInfo p {
-  margin: 1rem 0;
-  opacity: 0.8;
-}
-
-.contactInfo a {
-  color: white;
-  text-decoration: none;
+  margin: 0.5rem 0;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 
-.contactInfo a:hover {
+.contactInfo p:hover {
   color: #4ECCA3;
 }
 
 @media screen and (max-width: 996px) {
   .brandTitle {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
-
+  
   .brandSupply {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-
+  
   .contactInfo {
-    font-size: 1rem;
-  }
-
-  .section.dark .svgContainer {
-    height: 50vh;
-    padding: 2rem;
+    font-size: 0.9rem;
   }
 } 

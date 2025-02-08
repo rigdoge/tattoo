@@ -3,7 +3,6 @@ import Layout from '@theme/Layout';
 import styles from './styles.module.css';
 import { sections, Section } from './data';
 const LogoHex = require('@site/src/assets/logo-hex.svg').default;
-const WorkshopBg = require('@site/src/assets/workshop-bg.svg').default;
 
 interface AboutSectionProps extends Section {
   isReverse?: boolean;
@@ -40,7 +39,7 @@ export default function About() {
       title="About Us"
       description="Learn more about EZ Tattoo - Our story, mission, and values">
       <main className={styles.main}>
-        {/* 品牌展示区 */}
+        {/* Brand Section */}
         <section className={styles.brandSection}>
           <LogoHex className={styles.brandLogo} />
           <h1 className={styles.brandTitle}>EZ TATTOO</h1>
@@ -51,7 +50,7 @@ export default function About() {
           </div>
         </section>
         
-        {/* 其他部分 */}
+        {/* Content Sections */}
         <div className={styles.sections}>
           {sections.map((section, index) => (
             <AboutSection
