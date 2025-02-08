@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import styles from './styles.module.css';
 import { sections, Section } from './data';
 const LogoHex = require('@site/src/assets/logo-hex.svg').default;
+const WorkshopBg = require('@site/src/assets/workshop-bg.svg').default;
 
 interface AboutSectionProps extends Section {
   isReverse?: boolean;
@@ -13,7 +14,16 @@ function AboutSection({ image, title, subtitle, description, isReverse = false, 
   return (
     <section className={`${styles.section} ${isReverse ? styles.reverse : ''} ${dark ? styles.dark : ''}`}>
       <div className={styles.imageContainer}>
-        <img src={typeof image === 'string' ? image : image} alt={title} className={styles.image} />
+        {typeof image === 'string' ? (
+          <img src={image} alt={title} className={styles.image} />
+        ) : (
+          <div className={styles.svgContainer}>
+            {React.createElement(image, {
+              className: styles.svgImage,
+              'aria-label': title,
+            })}
+          </div>
+        )}
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>{title}</h2>
