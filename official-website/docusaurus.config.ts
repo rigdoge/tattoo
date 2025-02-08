@@ -1,24 +1,25 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import path from 'path';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'EZ Tattoo',
+  tagline: 'Global Tattoo Artist Platform',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://www.eztattoosupply.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'rigdoge', // Usually your GitHub org/user name.
+  projectName: 'tattoo', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -28,7 +29,17 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh-Hans'],
+    localeConfigs: {
+      en: {
+        htmlLang: 'en',
+        label: 'English',
+      },
+      'zh-Hans': {
+        htmlLang: 'zh-Hans',
+        label: '简体中文',
+      },
+    },
   },
 
   presets: [
@@ -39,8 +50,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/rigdoge/tattoo/tree/main/official-website/',
         },
         blog: {
           showReadingTime: true,
@@ -50,8 +60,7 @@ const config: Config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/rigdoge/tattoo/tree/main/official-website/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -66,23 +75,45 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'EZ Tattoo',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'EZ Tattoo Logo',
         src: 'img/logo.svg',
       },
       items: [
+        // 左侧导航
+        {
+          to: '/artists-globe',
+          label: 'Artists Globe',
+          position: 'left',
+        },
+        {
+          to: '/distributors-globe',
+          label: 'Distributors Map',
+          position: 'left',
+        },
+        {
+          to: '/artists-community',
+          label: 'Artists Community',
+          position: 'left',
+        },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Documentation',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/about', label: 'About Us', position: 'left'},
+        // 右侧导航
         {
-          href: 'https://github.com/facebook/docusaurus',
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        {
+          href: 'https://github.com/rigdoge/tattoo',
           label: 'GitHub',
           position: 'right',
         },
@@ -92,11 +123,15 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Products',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Artists Globe',
+              to: '/artists-globe',
+            },
+            {
+              label: 'Distributors Map',
+              to: '/distributors-globe',
             },
           ],
         },
@@ -104,40 +139,61 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Artists Community',
+              to: '/artists-community',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Documentation',
+              to: '/docs/intro',
             },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
             {
               label: 'Blog',
               to: '/blog',
             },
+          ],
+        },
+        {
+          title: 'Connect',
+          items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Facebook',
+              href: 'https://facebook.com/eztattoosupply',
+            },
+            {
+              label: 'Instagram',
+              href: 'https://instagram.com/eztattoosupply',
+            },
+            {
+              label: 'X (Twitter)',
+              href: 'https://x.com/eztattoosupply',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} EZ Tattoo. All rights reserved.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    function tailwindPlugin() {
+      return {
+        name: 'docusaurus-globe-plugin',
+        configureWebpack() {
+          return {
+            resolve: {
+              alias: {
+                '@globe-artists': path.resolve(__dirname, '../globe-artists/src'),
+              },
+            },
+          };
+        },
+      };
+    },
+  ],
 };
 
 export default config;

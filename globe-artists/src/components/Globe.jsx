@@ -24,13 +24,21 @@ const DEFAULT_VIEW = {
 
 const MARKER_SIZE = isMobile ? 24 : 32;
 
-const GlobeComponent = () => {
+const GlobeComponent = ({ isPreview = false, onLoad }) => {
   const globeEl = useRef();
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
   const hoverTimeoutRef = useRef(null);
   const markersRef = useRef(new Map());
+  const [isGlobeReady, setIsGlobeReady] = useState(false);
+
+  // 预览模式的默认视角
+  const PREVIEW_VIEW = {
+    lat: 29.3088,
+    lng: 120.0778,
+    altitude: 4
+  };
 
   // 按城市分组艺术家
   const artistsByCity = useMemo(() => {
@@ -53,22 +61,24 @@ const GlobeComponent = () => {
   // 初始化时设置默认视角
   useEffect(() => {
     if (globeEl.current) {
-      globeEl.current.pointOfView(DEFAULT_VIEW);
+      globeEl.current.pointOfView(isPreview ? PREVIEW_VIEW : DEFAULT_VIEW);
+      // 通知父组件 Globe 已加载完成
+      onLoad?.();
     }
-  }, []);
+  }, [isPreview, onLoad]);
 
   // 控制自动旋转
   useEffect(() => {
     if (globeEl.current) {
       const controls = globeEl.current.controls();
-      controls.autoRotate = !isHovering;
-      controls.autoRotateSpeed = 0.5;
-      controls.enableZoom = !isMobile; // 移动端禁用缩放
-      controls.enablePan = !isMobile;  // 移动端禁用平移
-      controls.minDistance = 200;      // 限制最小距离
-      controls.maxDistance = 800;      // 限制最大距离
+      controls.autoRotate = isPreview || !isHovering;
+      controls.autoRotateSpeed = isPreview ? 1 : 0.5;
+      controls.enableZoom = !isPreview && !isMobile;
+      controls.enablePan = !isPreview && !isMobile;
+      controls.minDistance = 200;
+      controls.maxDistance = isPreview ? 400 : 800;
     }
-  }, [isHovering]);
+  }, [isHovering, isPreview]);
 
   // 清理定时器
   useEffect(() => {
@@ -225,8 +235,18 @@ const GlobeComponent = () => {
     });
   }, []);
 
+  // 监听地球纹理图片加载
+  useEffect(() => {
+    const textureLoader = new Image();
+    textureLoader.onload = () => {
+      setIsGlobeReady(true);
+      onLoad?.();
+    };
+    textureLoader.src = '/earth-blue-marble.jpg';
+  }, [onLoad]);
+
   return (
-    <div className="globe-container">
+    <div className="globe-container" style={{ opacity: isGlobeReady ? 1 : 0 }}>
       {/* 添加一个全局点击区域 */}
       <div 
         className={`globe-overlay ${selectedArtist || selectedCity ? 'has-selection' : ''}`}
@@ -240,7 +260,8 @@ const GlobeComponent = () => {
         backgroundColor="rgba(0, 0, 0, 0)"
         onGlobeClick={(e) => {
           // 检查点击的元素是否是艺术家标记或其子元素
-          const target = e.target;
+          const target = e?.target;
+          if (!target || !target.closest) return; // 添加空值检查
           if (target.closest('.artist-marker')) {
             return; // 如果是艺术家标记，不处理地球的点击事件
           }

@@ -117,5 +117,12 @@ export default defineConfig({
         }
       }
     }
+  },
+  server: {
+    cors: true,
+    host: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
   }
 })

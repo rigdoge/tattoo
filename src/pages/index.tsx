@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { useState } from 'react';
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
@@ -6,11 +6,10 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
 
-// 动态导入 Globe 组件
-const Globe = React.lazy(() => import('@site/../globe-artists/src/components/Globe'));
-
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
+  const [isIframeLoaded, setIsIframeLoaded] = useState(false);
+
   return (
     <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
@@ -28,13 +27,20 @@ function HomepageHeader() {
             </div>
           </div>
           <div className={styles.heroGlobe}>
-            <iframe 
-              src="http://localhost:5173/?preview=true&embed=true"
-              className={styles.globeIframe}
-              title="Globe Artists"
-              loading="eager"
-              allowFullScreen
-            />
+            <div className={clsx(styles.globePlaceholder, isIframeLoaded && styles.hidden)}>
+              <img src="/img/hero-globe.svg" alt="Loading Globe..." />
+            </div>
+            <div className={clsx(styles.globeWrapper, isIframeLoaded && styles.visible)}>
+              <iframe 
+                src="http://localhost:5173/?preview=true&embed=true"
+                className={styles.globeIframe}
+                onLoad={() => setIsIframeLoaded(true)}
+                title="Globe Preview"
+                frameBorder="0"
+                allowFullScreen
+                loading="eager"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -143,4 +149,4 @@ export default function Home(): ReactNode {
       </main>
     </Layout>
   );
-}
+} 
