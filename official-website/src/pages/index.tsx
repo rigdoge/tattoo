@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
@@ -9,34 +9,43 @@ import styles from './index.module.css';
 // 动态导入 Globe 组件
 const Globe = React.lazy(() => import('@site/../globe-artists/src/components/Globe'));
 
+function Shape3D({ to, type }: { to: string; type: 'cube' | 'sphere' }) {
+  if (type === 'cube') {
+    return (
+      <Link to={to} className={styles.cube}>
+        <div className={`${styles.cube__face} ${styles['cube__face--front']}`}></div>
+        <div className={`${styles.cube__face} ${styles['cube__face--back']}`}></div>
+        <div className={`${styles.cube__face} ${styles['cube__face--right']}`}></div>
+        <div className={`${styles.cube__face} ${styles['cube__face--left']}`}></div>
+        <div className={`${styles.cube__face} ${styles['cube__face--top']}`}></div>
+        <div className={`${styles.cube__face} ${styles['cube__face--bottom']}`}></div>
+      </Link>
+    );
+  }
+  
+  return (
+    <Link to={to} className={styles.sphere}></Link>
+  );
+}
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
+  const [isIframeLoaded, setIsIframeLoaded] = useState(false);
+
   return (
     <header className={clsx('hero', styles.heroBanner)}>
-      <div className="container">
-        <div className={styles.heroContent}>
-          <div className={styles.heroText}>
-            <h1 className="hero__title">{siteConfig.title}</h1>
-            <p className="hero__subtitle">{siteConfig.tagline}</p>
-            <div className={styles.buttons}>
-              <Link className="button button--primary button--lg" to="/artists-globe">
-                Explore Artists Globe
-              </Link>
-              <Link className="button button--secondary button--lg" to="/distributors-globe">
-                Find Distributors
-              </Link>
-            </div>
-          </div>
-          <div className={styles.heroGlobe}>
-            <iframe 
-              src="http://localhost:5173/?preview=true&embed=true"
-              className={styles.globeIframe}
-              title="Globe Artists"
-              loading="eager"
-              allowFullScreen
-            />
-          </div>
-        </div>
+      <iframe 
+        src="http://localhost:5173/?preview=true&embed=true"
+        className={styles.globeIframe}
+        onLoad={() => setIsIframeLoaded(true)}
+        title="Globe Preview"
+        frameBorder="0"
+        allowFullScreen
+        loading="eager"
+      />
+      <div className={styles.shape3dContainer}>
+        <Shape3D to="/artists-globe" type="cube" />
+        <Shape3D to="/distributors-globe" type="sphere" />
       </div>
     </header>
   );
