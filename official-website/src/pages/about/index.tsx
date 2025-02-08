@@ -2,20 +2,22 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import styles from './styles.module.css';
 import { sections, Section } from './data';
-import LogoHex from '@site/src/assets/logo-hex.svg';
+const LogoHex = require('@site/src/assets/logo-hex.svg').default;
 
 interface AboutSectionProps extends Section {
   isReverse?: boolean;
+  dark?: boolean;
 }
 
-function AboutSection({ image, title, description, isReverse = false }: AboutSectionProps) {
+function AboutSection({ image, title, subtitle, description, isReverse = false, dark = false }: AboutSectionProps) {
   return (
-    <section className={`${styles.section} ${isReverse ? styles.reverse : ''}`}>
+    <section className={`${styles.section} ${isReverse ? styles.reverse : ''} ${dark ? styles.dark : ''}`}>
       <div className={styles.imageContainer}>
-        <img src={image} alt={title} className={styles.image} />
+        <img src={typeof image === 'string' ? image : image} alt={title} className={styles.image} />
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>{title}</h2>
+        {subtitle && <h3 className={styles.subtitle}>{subtitle}</h3>}
         <p className={styles.description}>{description}</p>
       </div>
     </section>
@@ -46,6 +48,7 @@ export default function About() {
               key={index}
               {...section}
               isReverse={index % 2 === 1}
+              dark={section.dark}
             />
           ))}
         </div>

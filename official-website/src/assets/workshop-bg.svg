@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="1200" height="800" fill="#1a1a1a"/>
+  
+  <!-- 纹身机图案 -->
+  <g transform="translate(400,200)" stroke="#4ECCA3" stroke-width="2">
+    <rect x="0" y="0" width="40" height="120" rx="5"/>
+    <rect x="10" y="130" width="20" height="60"/>
+    <circle cx="20" cy="40" r="15"/>
+    <line x1="0" y1="80" x2="40" y2="80"/>
+  </g>
+  
+  <!-- 装饰性图案 -->
+  <g stroke="#4ECCA3" stroke-width="1" opacity="0.3">
+    <circle cx="200" cy="400" r="100"/>
+    <circle cx="1000" cy="400" r="100"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+  </g>
+  
+  <!-- 点状装饰 -->
+  <g fill="#4ECCA3" opacity="0.2">
+    <circle cx="100" cy="100" r="2"/>
+    <circle cx="300" cy="300" r="2"/>
+    <circle cx="900" cy="300" r="2"/>
+    <circle cx="1100" cy="100" r="2"/>
+    <circle cx="100" cy="700" r="2"/>
+    <circle cx="1100" cy="700" r="2"/>
+  </g>
+</svg> 

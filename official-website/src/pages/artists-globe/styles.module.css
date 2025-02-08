@@ -1,0 +1,22 @@
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  position: relative;
+}
+
+.globeContainer {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.globeIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+} 
